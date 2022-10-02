@@ -1,9 +1,13 @@
 import os
+from wakepy import keepawake
 
-url = str(input("Enter url of the stream you want to download (live or archived), press enter to start download: \n"))
+with keepawake(keep_screen_awake=False):
+    url = str(input("Enter url of the stream you want to download (live or archived), press enter to start download: \n"))
 
-command = str('yt-dlp.exe -S "ext,res,proto" "' + url + '" --live-from-start --no-playlist --cookies-from-browser opera:"C:\\Users\\Alex\\AppData\\Roaming\\Opera Software\\Opera GX Stable" --wait-for-video 30 --downloader aria2c -N 400 -R 30')
+    print("\nThis window will close automatically when the download is complete\n")
 
-print(command + "\n")
+    command = str('yt-dlp.exe -S "ext,res,proto" "' + url + '" --live-from-start --no-playlist --cookies-from-browser opera:"C:\\Users\\Alex\\AppData\\Roaming\\Opera Software\\Opera GX Stable" --wait-for-video 30 --downloader aria2c -N 400 -R 30')
 
-os.system(command)
+    print(command + "\n")
+
+    os.system(command)
